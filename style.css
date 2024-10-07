@@ -51,3 +51,6 @@ button {
     flex-direction: column;
 }
 
+.operands button:focus{
+    background-color: #fff;
+}
