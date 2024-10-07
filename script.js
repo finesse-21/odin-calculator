@@ -19,7 +19,7 @@ digitButton.addEventListener("click", (event) => {
   });
 
 function calculatorAction(event) {
-    if (Number.isInteger(parseInt(event))) {
+    if (Number.isInteger(parseFloat(event))) {
         displayContainer.textContent += event;
     }
     if (event == "AC") {
@@ -29,61 +29,25 @@ function calculatorAction(event) {
         displayContainer.textContent = "";
     }
     if (event == "=") {
-        secondNumber = parseInt(displayContainer.textContent);
+        if (!firstNumber) return;
+        secondNumber = parseFloat(displayContainer.textContent);
         result = operate(firstNumber, operand, secondNumber);
         displayContainer.textContent = result;
+        firstNumber = NaN;
     }
     if (ALL_OPERANDS.includes(event)) {
         if (!firstNumber) {
-            firstNumber = parseInt(displayContainer.textContent);
+            firstNumber = parseFloat(displayContainer.textContent);
         }
         else {
-            secondNumber = parseInt(displayContainer.textContent);
+            secondNumber = parseFloat(displayContainer.textContent);
             result = operate(firstNumber, operand, secondNumber);
             firstNumber = result;
         }
         displayContainer.textContent = "";
         operand = event;
+        console.log(firstNumber);
+        console.log(operand);
+        console.log(secondNumber);
     }
 }
-
-// const clearButton = document.querySelector(".clear")
-// clearButton.addEventListener("click", () => {
-//     displayContainer.textContent = "";
-//   });
-
-// const addButton = document.querySelector(".add");
-// addButton.addEventListener("click", () => {
-//     firstNumber = parseInt(displayContainer.textContent);
-//     operand = "+"
-//     displayContainer.textContent = "";
-//   });
-
-// const subtractButton = document.querySelector(".subtract");
-// subtractButton.addEventListener("click", () => {
-//     firstNumber = parseInt(displayContainer.textContent);
-//     operand = "-"
-//     displayContainer.textContent = "";
-// });
-
-// const multiplyButton = document.querySelector(".multiply");
-// multiplyButton.addEventListener("click", () => {
-//     firstNumber = parseInt(displayContainer.textContent);
-//     operand = "*"
-//     displayContainer.textContent = "";
-// });
-
-// const divideButton = document.querySelector(".divide");
-// divideButton.addEventListener("click", () => {
-//     firstNumber = parseInt(displayContainer.textContent);
-//     operand = "/"
-//     displayContainer.textContent = "";
-// });
-
-// const equalsButton = document.querySelector(".equals");
-// equalsButton.addEventListener("click", () => {
-//     secondNumber = parseInt(displayContainer.textContent);
-//     result = operate(firstNumber, operand, secondNumber);
-//     displayContainer.textContent = result;
-// });
- 
