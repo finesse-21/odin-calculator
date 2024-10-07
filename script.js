@@ -13,8 +13,8 @@ function operate(firstNumber, operand, secondNumber) {
 
 const displayContainer = document.querySelector(".display");
 
-const digitButton = document.querySelector(".buttons");
-digitButton.addEventListener("click", (event) => {
+const calculatorButton = document.querySelector(".buttons");
+calculatorButton.addEventListener("click", (event) => {
     calculatorAction(event.target.innerText);
   });
 
@@ -31,7 +31,11 @@ function calculatorAction(event) {
     if (event == "=") {
         if (!firstNumber) return;
         secondNumber = parseFloat(displayContainer.textContent);
-        result = operate(firstNumber, operand, secondNumber);
+        if (operand == "/" && secondNumber == 0){
+            displayContainer.textContent = "ERROR";
+            return;
+        } 
+        result = Math.round(operate(firstNumber, operand, secondNumber) * 10000) / 10000;
         displayContainer.textContent = result;
         firstNumber = NaN;
     }
@@ -41,13 +45,10 @@ function calculatorAction(event) {
         }
         else {
             secondNumber = parseFloat(displayContainer.textContent);
-            result = operate(firstNumber, operand, secondNumber);
+            result = Math.round(operate(firstNumber, operand, secondNumber) * 10000) / 10000;
             firstNumber = result;
         }
         displayContainer.textContent = "";
         operand = event;
-        console.log(firstNumber);
-        console.log(operand);
-        console.log(secondNumber);
     }
 }
