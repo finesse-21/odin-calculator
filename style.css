@@ -18,13 +18,15 @@ body {
 .display {
     background-color: gray;
     height: 50px;
+    width: 100%;
     margin: 5px;
     display: flex;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
     font-size: 40px;
     font-weight: bold;
+    border: black 3px solid;
 }
 
 button {
@@ -47,8 +49,5 @@ button {
 .operands {
     display: flex;
     flex-direction: column;
-}
-.display {
-
 }
 
